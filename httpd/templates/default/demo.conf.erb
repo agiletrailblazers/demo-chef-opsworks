@@ -1,0 +1,8 @@
+ServerName <%= node[:demo][:hostname] %>
+
+<VirtualHost *:80>
+    # ServerName <%= node[:demo][:hostname] %>
+    ProxyPreserveHost On
+    ProxyPass / http://<%= node[:demo][:hostname] %>:<%= node[:demo][:tomcat_port] %>/
+    ProxyPassReverse / http://<%= node[:demo][:hostname] %>:<%= node[:demo][:tomcat_port] %>/
+</VirtualHost>

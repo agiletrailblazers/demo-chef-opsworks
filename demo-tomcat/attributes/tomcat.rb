@@ -1,0 +1,5 @@
+default[:tomcat][:version] = "8"
+default[:tomcat][:environment] = "DEV"
+default[:tomcat][:package] = "tomcat#{node[:tomcat][:version]}"
+default[:tomcat_manager][:package] = "tomcat#{node[:tomcat][:version]}-admin-webapps"
+default[:tomcat_manager][:username] = "deployuser"

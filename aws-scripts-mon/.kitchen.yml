@@ -1,0 +1,34 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
+  region: <%= ENV['AWS_REGION'] %>
+  availability_zone: us-east-1a
+  subnet_id: subnet-358d7342
+  associate_public_ip: false
+  iam_profile_name: demo-dev
+  security_group_ids: ["sg-77749510"]
+  associate_public_ip: false
+  tags:
+    Name: "Demo Monitoring"
+    environment: "dev"
+    stackdriver_monitor: "false"
+    "auto:stop": "0 19 * * *"
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: "11.10.4"
+
+platforms:
+  - name: amazon-2015.03
+    driver_config:
+      image_id: ami-1ecae776
+      instance_type: "t2.micro"
+    transport:
+      ssh_key: <%= ENV['AWS_SSH_KEY'] %>
+      username: ec2-user
+
+suites:
+  - name: default
+    run_list:
+      - recipe[aws-scripts-mon::default]
