@@ -1,0 +1,14 @@
+.vagrant
+/cookbooks
+Berksfile.lock
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+
+Gemfile.lock
+*.swp
+.ruby-version
