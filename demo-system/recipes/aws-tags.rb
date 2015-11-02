@@ -10,7 +10,8 @@
 include_recipe "aws::default"
 
 aws_resource_tag node[:ec2][:instance_id] do
-  tags({"environment" => node[:demo][:environment]})
+  tags({"jira-link" => node[:demo][:jira_project],
+        "environment" => node[:demo][:environment]})
   action :update
 end
 
